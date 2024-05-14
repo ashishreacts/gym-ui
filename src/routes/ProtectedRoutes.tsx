@@ -1,4 +1,4 @@
-import { PlanRoutes } from "@/features/qwerty";
+import { PlanRoutes } from "@/features/plans";
 import { Navigate, RouteObject } from "react-router-dom";
 import { MainLayoutWrapper } from "./MainLayoutWrapper";
 
