@@ -21,13 +21,13 @@ export const PlanList: React.FC<unknown> = () => {
   const paginationQueryOptions: PaginationQuery = {
     // IMP: in material-react-table, pages are 0 indexed
     // But the server side pages are 1 indexed, so aading 1 here
-    pageIndex: pagination.pageIndex + 1,
+    page: pagination.pageIndex + 1,
     pageSize: pagination.pageSize,
   };
 
   const api = usePlanList({
-    // TODO: add other params
     pagination: paginationQueryOptions,
+    gymId: "",
   });
 
   const dbRowCount = api.data?.data?.totalRecords ?? 0;

@@ -1,7 +1,7 @@
 type APIResponseStatus = "Suceess";
 
 export type PaginationQuery = {
-  pageIndex: number;
+  page: number;
   pageSize: number;
 };
 

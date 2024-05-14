@@ -1,20 +1,22 @@
 import { axiosInstance } from "@/lib/axios";
+import { PaginationQuery } from "@/types/api";
 import { useQuery } from "@tanstack/react-query";
 import { PlanResponseDTO } from "./types";
 
 type ApiParams = {
   // TODO: define params required to call the api
   // id: string;
-  // pagination: PaginationQuery;
+  pagination: PaginationQuery;
+  gymId: string;
 };
 
 const callApi = async (params: ApiParams): Promise<PlanResponseDTO> => {
-  const apiEndpoint = `/v1/`; // TODO: set valid api endpoint"
+  const apiEndpoint = `/v1/gyms/${params.gymId}/plans?pageIndex=${params.pagination.page}&pageSize=${params.pagination.pageSize}`;
   return axiosInstance.get(apiEndpoint);
 };
 
 export const queryKeyPlan = "Plan-QueryKey";
-export const usePlan = (params: ApiParams) => {
+export const usePlanList = (params: ApiParams) => {
   return useQuery({
     queryKey: [
       queryKeyPlan,
