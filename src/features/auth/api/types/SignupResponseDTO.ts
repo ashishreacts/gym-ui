@@ -1,2 +1,4 @@
 import { APIResponse } from "@/types/api";
-export type SignupResponseDTO = APIResponse<unknown>;
+import { LoginApiResponseData } from "./LoginResponseDTO";
+
+export type SignupResponseDTO = APIResponse<LoginApiResponseData>;
