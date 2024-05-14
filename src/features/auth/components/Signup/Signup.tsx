@@ -41,7 +41,7 @@ export const Signup: React.FC<Props> = ({ onSuccess }) => {
         ))}
       </Stepper>
       <Form />
-      {stepTitles.length === stepTitles.length ? <SubmitButton /> : <></>}
+      {activeStep === stepTitles.length ? <SubmitButton /> : <></>}
     </Container>
   );
 };
