@@ -1,6 +1,6 @@
+import { PlanRoutes } from "@/features/qwerty";
 import { Navigate, RouteObject } from "react-router-dom";
 import { MainLayoutWrapper } from "./MainLayoutWrapper";
-import { PlanRoutes } from "@/features/Plans";
 
 export const ProtectedRoutes: RouteObject[] = [
   {
