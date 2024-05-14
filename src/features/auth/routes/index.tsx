@@ -1,17 +1,18 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Login } from "../components/Login";
 import { Signup } from "../components/Signup";
 
 export const AuthRoutes = () => {
+  const navigate = useNavigate();
   return (
     <Routes>
       <Route
         path="login"
-        element={<Login onSuccess={() => console.log("success")} />}
+        element={<Login onSuccess={() => navigate("/app/plans")} />}
       />
       <Route
         path="signup"
-        element={<Signup onSuccess={() => console.log("success")} />}
+        element={<Signup onSuccess={() => navigate("/app/plans")} />}
       />
     </Routes>
   );
