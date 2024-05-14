@@ -72,7 +72,7 @@ const LoginForm = (
 
   const Form = () => (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
-      <Box component="form" noValidate sx={{ mt: 1 }}>
+      <Box>
         <TextField
           label="Email"
           variant="outlined"
@@ -127,10 +127,11 @@ export const Login: React.FC<Props> = ({ onSuccess }) => {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center", // Add this line
+          minHeight: "100vh", // Optional, to ensure the box takes up the full viewport height
         }}
       >
         <Form />
