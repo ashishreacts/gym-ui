@@ -1,6 +1,6 @@
 import { Button } from "@/components/Elements";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Stack, TextField } from "@mui/material";
+import { Box, Container, TextField } from "@mui/material";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
@@ -61,6 +61,7 @@ const LoginForm = (
     <Button
       type="submit"
       variant="contained"
+      fullWidth
       disabled={!isDirty || !isValid || isApiRequestPending}
       form={formId}
       isLoading={isApiRequestPending}
@@ -71,10 +72,12 @@ const LoginForm = (
 
   const Form = () => (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={1}>
+      <Box component="form" noValidate sx={{ mt: 1 }}>
         <TextField
           label="Email"
           variant="outlined"
+          required
+          fullWidth
           {...register("email")}
           error={!!errors.email}
           helperText={errors.email?.message ?? ""}
@@ -83,13 +86,15 @@ const LoginForm = (
         <TextField
           label="Password"
           variant="outlined"
+          required
+          fullWidth
           {...register("password")}
           error={!!errors.password}
           helperText={errors.password?.message ?? ""}
         />
 
         <SubmitButton />
-      </Stack>
+      </Box>
     </form>
   );
 
@@ -110,7 +115,6 @@ export const Login: React.FC<Props> = ({ onSuccess }) => {
   const isApiRequestPending = api.isPending;
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    // TODO: HANLDE FORM SUBMISSION HERE....................
     await api.mutateAsync({
       data: data,
     });
@@ -120,8 +124,17 @@ export const Login: React.FC<Props> = ({ onSuccess }) => {
   const { Form } = LoginForm(onSubmit, isApiRequestPending);
 
   return (
-    <>
-      <Form />
-    </>
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Form />
+      </Box>
+    </Container>
   );
 };
