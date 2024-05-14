@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
 import { useNotificationStore } from "@/stores/notifications";
+import storage from "@/utils/storage";
 import { useMutation } from "@tanstack/react-query";
 import { LoginResponseDTO } from "./types";
 
@@ -28,6 +29,7 @@ export const useLogin = () => {
       //
     },
     onSuccess: (_responseData: LoginResponseDTO, _apiParams: ApiParams) => {
+      storage.setToken(_responseData.data.entity.token.accessToken);
       addNotification({
         type: "success",
         title: "Request Successful",
