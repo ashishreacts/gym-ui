@@ -1,6 +1,7 @@
 import { Button } from "@/components/Elements";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Container, TextField } from "@mui/material";
+import { LockOutlined } from "@mui/icons-material";
+import { Avatar, Box, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
@@ -124,18 +125,22 @@ export const Login: React.FC<Props> = ({ onSuccess }) => {
   const { Form } = LoginForm(onSubmit, isApiRequestPending);
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center", // Add this line
-          minHeight: "100vh", // Optional, to ensure the box takes up the full viewport height
-        }}
-      >
-        <Form />
-      </Box>
-    </Container>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "80vh",
+      }}
+    >
+      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <LockOutlined />
+      </Avatar>
+      <Typography component="h1" variant="h5" sx={{ m: 1 }}>
+        Sign in
+      </Typography>
+      <Form />
+    </Box>
   );
 };
