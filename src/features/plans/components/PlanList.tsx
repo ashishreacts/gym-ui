@@ -3,7 +3,6 @@ import {
   getAPIErrorText,
 } from "@/components/MaterialReactTable";
 import { PaginationQuery } from "@/types/api";
-import { Button, Stack, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -91,12 +90,5 @@ export const PlanList: React.FC<unknown> = () => {
     // ],
   });
 
-  return (
-    <Stack>
-      <Button variant="contained" href="/app/plans/create">
-        <Typography>Create Plan</Typography>
-      </Button>
-      <MaterialReactTable table={table} />
-    </Stack>
-  );
+  return <MaterialReactTable table={table} />;
 };

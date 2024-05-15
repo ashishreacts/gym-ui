@@ -1,12 +1,12 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { CreatePlan } from "../components/CreatePlan";
-import { PlanList } from "../components/PlanList";
+import { PlanListPage } from "../components/PlanListPage";
 
 export const PlanRoutes = () => {
   const navigate = useNavigate();
   return (
     <Routes>
-      <Route path="" element={<PlanList />} />
+      <Route path="" element={<PlanListPage />} />
       <Route
         path="create"
         element={<CreatePlan onSuccess={() => navigate("/app/plans")} />}
