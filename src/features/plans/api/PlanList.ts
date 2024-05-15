@@ -20,9 +20,8 @@ export const usePlanList = (params: ApiParams) => {
   return useQuery({
     queryKey: [
       queryKeyPlan,
-      // TODO: if query data dependes on any other keys, mention them;
-      // else remove the following code
-      // params.id,
+      params.pagination.page,
+      params.pagination.pageSize,
     ],
     queryFn: () => callApi(params),
 

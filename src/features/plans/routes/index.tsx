@@ -4,7 +4,7 @@ import { PlanList } from "../components/PlanList";
 export const PlanRoutes = () => {
   return (
     <Routes>
-      <Route path="path" element={<PlanList />} />
+      <Route path="" element={<PlanList />} />
     </Routes>
   );
 };

@@ -27,7 +27,7 @@ export const PlanList: React.FC<unknown> = () => {
 
   const api = usePlanList({
     pagination: paginationQueryOptions,
-    gymId: "",
+    gymId: "5a0b9b6c-358f-406a-a82e-70cf9ba5ba70",
   });
 
   const dbRowCount = api.data?.data?.totalRecords ?? 0;
@@ -39,6 +39,16 @@ export const PlanList: React.FC<unknown> = () => {
         accessorFn: (originalRow) => originalRow.name,
         id: "name",
         header: "Name",
+      },
+      {
+        accessorFn: (originalRow) => originalRow.price,
+        id: "price",
+        header: "Price",
+      },
+      {
+        accessorFn: (originalRow) => originalRow.durationInMoths,
+        id: "durationInMoths",
+        header: "Duration in Months",
       },
     ],
     []
