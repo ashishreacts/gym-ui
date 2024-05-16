@@ -11,6 +11,7 @@ import {
 import { useMemo, useState } from "react";
 import { usePlanList } from "../api";
 import { PlanListItem } from "../api/types";
+import { DeletePlan } from "./DeletePlan";
 
 export const PlanList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
@@ -81,13 +82,13 @@ export const PlanList: React.FC<unknown> = () => {
     },
 
     // crud options
-    // editDisplayMode: "custom",
-    // positionActionsColumn: "last",
-    // enableRowActions: true,
-    // renderRowActionMenuItems: ({ closeMenu, row }) => [
-    //   <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
-    //   <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
-    // ],
+    editDisplayMode: "custom",
+    positionActionsColumn: "last",
+    enableRowActions: true,
+    renderRowActionMenuItems: ({ closeMenu, row }) => [
+      // <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
+      <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
+    ],
   });
 
   return <MaterialReactTable table={table} />;
