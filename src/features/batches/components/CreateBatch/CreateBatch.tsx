@@ -141,19 +141,23 @@ export const CreateBatch: React.FC<Props> = ({ onSuccess }) => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     // TODO: HANLDE FORM SUBMISSION HERE....................
-    const TimeData = data.startTime.split(":");
-    const TimeHour = parseInt(TimeData[0]);
-    const TimeMinute = parseInt(TimeData[1]);
+    const startTimeData = data.startTime.split(":");
+    const startTimeHour = parseInt(startTimeData[0]);
+    const startTimeMinute = parseInt(startTimeData[1]);
+
+    const endTimeData = data.endTime.split(":");
+    const endTimeHour = parseInt(endTimeData[0]);
+    const endTimeMinute = parseInt(endTimeData[1]);
 
     const requestData: CreateBatchRequestDTO = {
       name: data.name,
       startTime: {
-        hour: TimeHour,
-        minute: TimeMinute,
+        hour: startTimeHour,
+        minute: startTimeMinute,
       },
       endTime: {
-        hour: TimeHour,
-        minute: TimeMinute,
+        hour: endTimeHour,
+        minute: endTimeMinute,
       },
       batchLimit: data.batchLimit,
     };
