@@ -11,6 +11,7 @@ import {
 import { useMemo, useState } from "react";
 import { useBatchList } from "../api";
 import { BatchListItem } from "../api/types";
+import { DeleteBatch } from "./DeleteBatch";
 
 export const BatchList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
@@ -87,13 +88,13 @@ export const BatchList: React.FC<unknown> = () => {
     },
 
     // crud options
-    // editDisplayMode: "custom",
-    // positionActionsColumn: "last",
-    // enableRowActions: true,
-    // renderRowActionMenuItems: ({ closeMenu, row }) => [
-    //   <UpdateBatch key={0} data={row.original} onSuccess={closeMenu} />,
-    //   <DeleteBatch key={1} data={row.original} onSuccess={closeMenu} />,
-    // ],
+    editDisplayMode: "custom",
+    positionActionsColumn: "last",
+    enableRowActions: true,
+    renderRowActionMenuItems: ({ closeMenu, row }) => [
+      // <UpdateBatch key={0} data={row.original} onSuccess={closeMenu} />,
+      <DeleteBatch key={1} data={row.original} onSuccess={closeMenu} />,
+    ],
   });
 
   return <MaterialReactTable table={table} />;
