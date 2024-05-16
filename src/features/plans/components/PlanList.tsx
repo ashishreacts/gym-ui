@@ -12,6 +12,7 @@ import { useMemo, useState } from "react";
 import { usePlanList } from "../api";
 import { PlanListItem } from "../api/types";
 import { DeletePlan } from "./DeletePlan";
+import { UpdatePlan } from "./UpdatePlan";
 
 export const PlanList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
@@ -86,7 +87,7 @@ export const PlanList: React.FC<unknown> = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActionMenuItems: ({ closeMenu, row }) => [
-      // <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
+      <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
       <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
     ],
   });
