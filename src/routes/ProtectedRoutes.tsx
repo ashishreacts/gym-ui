@@ -4,6 +4,7 @@ import { GymRoutes } from "@/features/gym";
 import { PlanRoutes } from "@/features/plans";
 import { Navigate, RouteObject } from "react-router-dom";
 import { MainLayoutWrapper } from "./MainLayoutWrapper";
+import { MemberRoutes } from "@/features/members";
 
 export const ProtectedRoutes: RouteObject[] = [
   {
@@ -20,6 +21,8 @@ export const ProtectedRoutes: RouteObject[] = [
       { path: "/app/batches/*", element: <BatchRoutes /> },
       { path: "", element: <Navigate to="/app/gym" /> }, // Redirect /app to /app/gym
       { path: "/app/gym/*", element: <GymRoutes /> },
+      { path: "", element: <Navigate to="/app/member" /> }, // Redirect /app to /app/member
+      { path: "/app/member/*", element: <MemberRoutes /> },
     ],
   },
 ];
