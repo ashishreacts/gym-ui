@@ -16,4 +16,12 @@ export type BatchListItem = {
   createdAt: Date;
   updatedAt: Date;
   deleted: null;
+  startTime: Time;
+  endTime: Time;
+};
+
+export type Time = {
+  id: number;
+  hour: number;
+  minute: number;
 };

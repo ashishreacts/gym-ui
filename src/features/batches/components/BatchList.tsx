@@ -12,6 +12,7 @@ import { useMemo, useState } from "react";
 import { useBatchList } from "../api";
 import { BatchListItem } from "../api/types";
 import { DeleteBatch } from "./DeleteBatch";
+import { UpdateBatch } from "./UpdateBatch";
 
 export const BatchList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
@@ -92,7 +93,7 @@ export const BatchList: React.FC<unknown> = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActionMenuItems: ({ closeMenu, row }) => [
-      // <UpdateBatch key={0} data={row.original} onSuccess={closeMenu} />,
+      <UpdateBatch key={0} data={row.original} onSuccess={closeMenu} />,
       <DeleteBatch key={1} data={row.original} onSuccess={closeMenu} />,
     ],
   });
