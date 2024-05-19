@@ -21,7 +21,7 @@ export const GymListPage = () => {
   return (
     <Stack>
       <Button variant="contained" onClick={handleOpen}>
-        <Typography>Create Plan</Typography>
+        <Typography>Create Gym</Typography>
       </Button>
       <Modal
         open={open}
