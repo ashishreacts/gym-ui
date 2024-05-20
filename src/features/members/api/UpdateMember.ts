@@ -2,26 +2,25 @@ import { axiosInstance } from "@/lib/axios";
 import { queryClient } from "@/lib/reactQuery";
 import { useNotificationStore } from "@/stores/notifications";
 import { useMutation } from "@tanstack/react-query";
-import { UpdatePlanResponseDTO } from "./types";
-import { queryKeyPlan } from "../api/PlanList";
+import { UpdateMemberResponseDTO } from "./types";
+import { queryKeyMemberList } from "../api/MemberList";
 
-type UpdatePlanRequestDTO = {
-  // TODO: define type
-  // NOTE: if FormValues type is same as this then dont add anything here
+export type UpdateMemberRequestDTO = {
+  //
 };
 
 type ApiParams = {
-  data: UpdatePlanRequestDTO;
+  data: UpdateMemberRequestDTO;
   gymId: string;
   id: string;
 };
 
-const callApi = async (params: ApiParams): Promise<UpdatePlanResponseDTO> => {
-  const apiEndpoint = `/v1/gyms/${params.gymId}/plans/${params.id}`;
-  return axiosInstance.put(apiEndpoint, params.data);
+const callApi = async (params: ApiParams): Promise<UpdateMemberResponseDTO> => {
+  const apiEndpoint = `/v1/gyms/${params.gymId}/members/${params.id}`;
+  return axiosInstance.post(apiEndpoint, params.data);
 };
 
-export const useUpdatePlan = () => {
+export const useUpdateMember = () => {
   const { addNotification } = useNotificationStore();
 
   return useMutation({
@@ -31,14 +30,14 @@ export const useUpdatePlan = () => {
     onMutate: async (_apiParams: ApiParams) => {
       // TODO: use correct queryKeys here, use keys from _apiParams if required
       // cancel ongoing queries, need awaiting before calling actual api
-      await queryClient.cancelQueries({ queryKey: [queryKeyPlan] });
+      await queryClient.cancelQueries({ queryKey: [queryKeyMemberList] });
     },
     onSuccess: (
-      _responseData: UpdatePlanResponseDTO,
+      _responseData: UpdateMemberResponseDTO,
       _apiParams: ApiParams
     ) => {
       // TODO: use correct queryKeys here, use values from _apiParams/_responseData if required
-      queryClient.invalidateQueries({ queryKey: [queryKeyPlan] });
+      queryClient.invalidateQueries({ queryKey: [queryKeyMemberList] });
 
       addNotification({
         type: "success",

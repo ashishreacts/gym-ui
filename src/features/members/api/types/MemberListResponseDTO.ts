@@ -7,6 +7,8 @@ export type Data = {
 };
 
 export type MemberListItem = {
+  id: string;
+  membershipId: number;
   firstName: string;
   lastName: string;
   mobile: string;
@@ -18,20 +20,8 @@ export type MemberListItem = {
   dateOfJoing: Date;
   address: string;
   notes: string;
-  plans: Plan[];
-};
-
-export type Plan = {
-  planId: string;
-  batchId: string;
-  startDate: Date;
-  trainingType: string;
-  admissionFees: number;
-  discount: number;
-  discountType: string;
-  payments: Payment[];
-};
-
-export type Payment = {
-  amountPaid: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deleted: null;
+  gymId: string;
 };
