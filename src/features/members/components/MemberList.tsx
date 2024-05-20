@@ -99,7 +99,7 @@ export const MemberList: React.FC<unknown> = () => {
       <MenuItem
         onClick={() => {
           //doSomething();
-          navigate("/app/member/edit");
+          navigate(`/app/member/${row.original.id}/edit`);
         }}
       >
         <ListItemIcon>

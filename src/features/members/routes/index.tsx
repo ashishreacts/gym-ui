@@ -9,7 +9,10 @@ export const MemberRoutes = () => {
     <Routes>
       <Route path="" element={<MemberListPage />} />
       <Route path="create" element={<CreateMember onSuccess={() => true} />} />
-      <Route path="edit" element={<UpdateMember onSuccess={() => true} />} />
+      <Route
+        path=":id/edit"
+        element={<UpdateMember onSuccess={() => true} />}
+      />
     </Routes>
   );
 };

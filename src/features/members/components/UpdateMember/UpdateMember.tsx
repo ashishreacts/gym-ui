@@ -1,6 +1,7 @@
 import { Container, Step, StepLabel, Stepper } from "@mui/material";
 import React from "react";
 import { SubmitHandler } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import { UpdateMemberRequestDTO, useUpdateMember } from "../../api";
 import { MemberListItem } from "../../api/types";
 import { SteppedForm } from "./SteppedForm";
@@ -8,16 +9,16 @@ import { FormValues } from "./schema";
 
 type Props = {
   onSuccess: () => void;
-  data: MemberListItem;
 };
 
 // Component to be exported.
 // Keep the code in this component short - it should serve as top level for smaller components
 // export const Sample: React.FC<Props> = ({destructure props here}) => {...}
-export const UpdateMember: React.FC<Props> = ({
-  onSuccess,
-  data: MemberItemData,
-}) => {
+export const UpdateMember: React.FC<Props> = ({ onSuccess }) => {
+  const { id } = useParams<{ id: string }>();
+  console.log("route id received: ", id);
+  const memberItemData: MemberListItem = null;
+
   const api = useUpdateMember();
   const isApiRequestPending = api.isPending;
 
@@ -58,8 +59,8 @@ export const UpdateMember: React.FC<Props> = ({
     await api.mutateAsync({
       // TODO: assign appropriate data here
       data: requestData,
-      gymId: MemberItemData.gymId,
-      id: MemberItemData.id,
+      gymId: memberItemData.gymId,
+      id: memberItemData.id,
     });
     onSuccess();
   };
@@ -68,7 +69,7 @@ export const UpdateMember: React.FC<Props> = ({
   const stepTitles = ["Step One", "Step Two"];
 
   const { Form, SubmitButton, activeStep } = SteppedForm(
-    MemberItemData,
+    memberItemData,
     onSubmit,
     isApiRequestPending,
     stepTitles.length
