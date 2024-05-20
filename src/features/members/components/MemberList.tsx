@@ -97,6 +97,7 @@ export const MemberList: React.FC<unknown> = () => {
     enableRowActions: true,
     renderRowActionMenuItems: ({ closeMenu, row }) => [
       <MenuItem
+        key={0}
         onClick={() => {
           //doSomething();
           navigate(`/app/member/${row.original.id}/edit`);

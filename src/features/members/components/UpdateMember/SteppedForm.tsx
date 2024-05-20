@@ -1,41 +1,14 @@
 import { Button } from "@/components/Elements";
-import { GenderEnum } from "@/features/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
-import { MemberListItem } from "../../api/types";
 import { WizardStepOneForm } from "./WizardStepOneForm";
 import { WizardStepTwoForm } from "./WizardStepTwoForm";
 import { FormValues, schema } from "./schema";
 
-const useFormWithValidation = (data: MemberListItem) => {
+const useFormWithValidation = () => {
   const form = useForm<FormValues>({
-    defaultValues: {
-      stepOne: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        mobile: data.mobile,
-        countryShortCode: data.countryShortCode,
-        countryCode: data.countryCode,
-        email: data.email,
-        dob: data.dob,
-        gender: data.gender as GenderEnum,
-        dateOfJoing: data.dateOfJoing,
-        address: data.address,
-        notes: data.notes,
-      },
-      // stepTwo: {
-      //   planId: data.planId,
-      //   batchId: data.batchId,
-      //   startDate: data.startDate,
-      //   trainingType: data.trainingType,
-      //   admissionFees: data.admissionFees,
-      //   discount: data.discount,
-      //   discountType: data.discountType,
-      //   payments: data.payments,
-      // },
-    },
     resolver: yupResolver(schema),
     mode: "onBlur",
   });
@@ -44,12 +17,11 @@ const useFormWithValidation = (data: MemberListItem) => {
 };
 
 export const SteppedForm = (
-  data: MemberListItem,
   onSubmit: SubmitHandler<FormValues>,
   isApiRequestPending: boolean,
   totalSteps: number
 ) => {
-  const methods = useFormWithValidation(data);
+  const methods = useFormWithValidation();
 
   const {
     register,
