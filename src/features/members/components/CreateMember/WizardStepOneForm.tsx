@@ -1,5 +1,4 @@
 import { AppDatePicker, WizardStepProps } from "@/components/Elements";
-import { DevTool } from "@hookform/devtools";
 import { Box, Button, TextField } from "@mui/material";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
@@ -118,7 +117,6 @@ export const WizardStepOneForm = forwardRef(
         />
         {/* TODO: keep either of "Next" or "Back" button */}
         <Button onClick={onNext}>Next</Button>
-        <DevTool control={_hookFormControl} /> {/* set up the dev tool */}
       </Box>
     );
   }
