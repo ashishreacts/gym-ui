@@ -1,3 +1,4 @@
+import { GenderEnum } from "@/features/auth";
 import { APIResponse } from "@/types/api";
 export type GetMemberByIdResponseDTO = APIResponse<GetMemberByIdData>;
 
@@ -11,7 +12,7 @@ export type GetMemberByIdData = {
   countryCode: string;
   email: string;
   dob: Date;
-  gender: string;
+  gender: GenderEnum;
   dateOfJoing: Date;
   address: string;
   notes: string;

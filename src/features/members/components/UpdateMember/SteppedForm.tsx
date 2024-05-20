@@ -3,12 +3,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
+import {
+  ApiParams,
+  callApi as GetMemberByIdApi,
+} from "../../api/GetMemberById";
 import { WizardStepOneForm } from "./WizardStepOneForm";
 import { WizardStepTwoForm } from "./WizardStepTwoForm";
 import { FormValues, schema } from "./schema";
 
-const useFormWithValidation = () => {
+const useFormWithValidation = (params: ApiParams) => {
   const form = useForm<FormValues>({
+    defaultValues: async () => {
+      return await getDefaultValuesFromApi(params);
+    },
     resolver: yupResolver(schema),
     mode: "onBlur",
   });
@@ -19,9 +26,10 @@ const useFormWithValidation = () => {
 export const SteppedForm = (
   onSubmit: SubmitHandler<FormValues>,
   isApiRequestPending: boolean,
-  totalSteps: number
+  totalSteps: number,
+  params: ApiParams
 ) => {
-  const methods = useFormWithValidation();
+  const methods = useFormWithValidation(params);
 
   const {
     register,
@@ -90,3 +98,39 @@ export const SteppedForm = (
 
   return { SubmitButton, Form, activeStep };
 };
+async function getDefaultValuesFromApi({ gymId, memberId }: ApiParams) {
+  const apidata = await GetMemberByIdApi({
+    gymId,
+    memberId,
+  });
+
+  const data = apidata.data;
+
+  const defaults: FormValues = {
+    stepOne: {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      mobile: data.mobile,
+      countryShortCode: data.countryShortCode,
+      countryCode: data.countryCode,
+      email: data.email,
+      dob: new Date(data.dob),
+      gender: data.gender,
+      dateOfJoing: new Date(data.dateOfJoing),
+      address: data.address,
+      notes: data.notes,
+    },
+    stepTwo: {
+      planId: data.plans[0].planId,
+      batchId: data.plans[0].batchId,
+      startDate: new Date(data.plans[0].startDate),
+      trainingType: data.plans[0].trainingType,
+      admissionFees: data.plans[0].admissionFees,
+      discount: data.plans[0].discount,
+      discountType: data.plans[0].discountType,
+      payments: data.plans[0].payments[0].amountPaid,
+    },
+  };
+
+  return defaults;
+}

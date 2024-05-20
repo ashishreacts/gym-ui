@@ -3,10 +3,10 @@ import { Box, Button, TextField } from "@mui/material";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { BatchIdDropdown } from "./BatchIdDropdown";
-import { PlanIdDropdown } from "./PlanIdDropdown";
-import { FormValues } from "./schema";
-import { TrainingTypeDropdown } from "./TrainingTypeDropdown";
 import { DiscountTypeDropdown } from "./DiscountTypeDropdown";
+import { PlanIdDropdown } from "./PlanIdDropdown";
+import { TrainingTypeDropdown } from "./TrainingTypeDropdown";
+import { FormValues } from "./schema";
 
 export const WizardStepTwoForm = forwardRef(
   ({ onSuccessValidation, onBack }: WizardStepProps, _ref) => {
@@ -15,7 +15,7 @@ export const WizardStepTwoForm = forwardRef(
       formState,
       trigger,
       register,
-      getValues,
+      // getValues,
     } = useFormContext<FormValues>();
     const { errors } = formState;
 
@@ -40,7 +40,8 @@ export const WizardStepTwoForm = forwardRef(
           name={"stepTwo.startDate"}
           datePickerProps={{
             label: "Start Date",
-            value: getValues("stepTwo.startDate") || null,
+            // value: getValues("stepTwo.startDate") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepTwo?.startDate,

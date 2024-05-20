@@ -33,7 +33,11 @@ export const UpdateMember: React.FC<Props> = ({ onSuccess }) => {
   const { Form, SubmitButton, activeStep } = SteppedForm(
     onSubmit,
     isApiRequestPending,
-    stepTitles.length
+    stepTitles.length,
+    {
+      gymId: "5a0b9b6c-358f-406a-a82e-70cf9ba5ba70",
+      memberId: memberId ?? "",
+    }
   );
 
   return (

@@ -2,12 +2,12 @@ import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { GetMemberByIdResponseDTO } from "./types";
 
-type ApiParams = {
+export type ApiParams = {
   gymId: string;
   memberId: string;
 };
 
-const callApi = async (
+export const callApi = async (
   params: ApiParams
 ): Promise<GetMemberByIdResponseDTO> => {
   // if (!params.memberId) {

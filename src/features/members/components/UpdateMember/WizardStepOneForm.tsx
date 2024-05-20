@@ -13,7 +13,7 @@ export const WizardStepOneForm = forwardRef(
       formState,
       trigger,
       register,
-      getValues,
+      // getValues,
     } = useFormContext<FormValues>();
     const { errors } = formState;
 
@@ -82,7 +82,8 @@ export const WizardStepOneForm = forwardRef(
           name={"stepOne.dateOfJoing"}
           datePickerProps={{
             label: "Date of Joining",
-            value: getValues("stepOne.dateOfJoing") || null,
+            // value: getValues("stepOne.dateOfJoing") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepOne?.dateOfJoing,
@@ -94,7 +95,8 @@ export const WizardStepOneForm = forwardRef(
           name={"stepOne.dob"}
           datePickerProps={{
             label: "Date of Birth",
-            value: getValues("stepOne.dob") || null,
+            // value: getValues("stepOne.dob") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepOne?.dob,
