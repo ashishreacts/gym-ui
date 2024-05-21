@@ -1,5 +1,4 @@
 import { AppDatePicker, WizardStepProps } from "@/components/Elements";
-import { DevTool } from "@hookform/devtools";
 import { Box, Button, TextField } from "@mui/material";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
@@ -13,7 +12,7 @@ export const WizardStepOneForm = forwardRef(
       formState,
       trigger,
       register,
-      getValues,
+      // getValues,
     } = useFormContext<FormValues>();
     const { errors } = formState;
 
@@ -82,7 +81,7 @@ export const WizardStepOneForm = forwardRef(
           name={"stepOne.dateOfJoing"}
           datePickerProps={{
             label: "Date of Joining",
-            value: getValues("stepOne.dateOfJoing") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepOne?.dateOfJoing,
@@ -94,7 +93,7 @@ export const WizardStepOneForm = forwardRef(
           name={"stepOne.dob"}
           datePickerProps={{
             label: "Date of Birth",
-            value: getValues("stepOne.dob") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepOne?.dob,
@@ -118,7 +117,6 @@ export const WizardStepOneForm = forwardRef(
         />
         {/* TODO: keep either of "Next" or "Back" button */}
         <Button onClick={onNext}>Next</Button>
-        <DevTool control={_hookFormControl} /> {/* set up the dev tool */}
       </Box>
     );
   }

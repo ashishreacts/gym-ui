@@ -17,7 +17,7 @@ type ApiParams = {
 
 const callApi = async (params: ApiParams): Promise<UpdateMemberResponseDTO> => {
   const apiEndpoint = `/v1/gyms/${params.gymId}/members/${params.id}`;
-  return axiosInstance.post(apiEndpoint, params.data);
+  return axiosInstance.put(apiEndpoint, params.data);
 };
 
 export const useUpdateMember = () => {

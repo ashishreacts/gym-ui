@@ -13,7 +13,7 @@ export const WizardStepTwoForm = forwardRef(
       formState,
       trigger,
       register,
-      getValues,
+      // getValues,
     } = useFormContext<FormValues>();
     const { errors } = formState;
 
@@ -38,7 +38,7 @@ export const WizardStepTwoForm = forwardRef(
           name={"stepTwo.startDate"}
           datePickerProps={{
             label: "Start Date",
-            value: getValues("stepTwo.startDate") || null,
+            value: null,
           }}
           errorHandlingProps={{
             formError: errors.stepTwo?.startDate,
