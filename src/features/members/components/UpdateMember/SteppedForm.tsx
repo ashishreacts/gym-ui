@@ -3,7 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
-import { ApiParams, callApi as GetMemberByIdApi } from "../../api";
+import {
+  ApiParams,
+  callApi as GetMemberByIdApi,
+} from "../../api/getMemberByIds";
 import { WizardStepOneForm } from "./WizardStepOneForm";
 import { WizardStepTwoForm } from "./WizardStepTwoForm";
 import { FormValues, schema } from "./schema";

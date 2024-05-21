@@ -41,7 +41,7 @@ type ApiParams = {
 };
 
 const callApi = async (params: ApiParams): Promise<CreateMemberResponseDTO> => {
-  const apiEndpoint = `/v1/gyms/${params.gymId}/members`; // TODO: set valid api endpoint
+  const apiEndpoint = `/v1/gyms/${params.gymId}/members`;
   return axiosInstance.post(apiEndpoint, params.data);
 };
 
