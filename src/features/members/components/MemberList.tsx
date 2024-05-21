@@ -3,16 +3,20 @@ import {
   getAPIErrorText,
 } from "@/components/MaterialReactTable";
 import { PaginationQuery } from "@/types/api";
+import { Edit } from "@mui/icons-material";
+import { ListItemIcon, MenuItem } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from "material-react-table";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMemberList } from "../api";
 import { MemberListItem } from "../api/types";
 
 export const MemberList: React.FC<unknown> = () => {
+  const navigate = useNavigate();
   const [pagination, setPagination] = useState({
     pageIndex: 0, // initial state = 0, means laod first page
     pageSize: 5,
@@ -87,13 +91,24 @@ export const MemberList: React.FC<unknown> = () => {
     },
 
     // crud options
-    // editDisplayMode: "custom",
-    // positionActionsColumn: "last",
-    // enableRowActions: true,
-    // renderRowActionMenuItems: ({ closeMenu, row }) => [
-    //   <UpdateMember key={0} data={row.original} onSuccess={closeMenu} />,
-    //   <DeleteMember key={1} data={row.original} onSuccess={closeMenu} />,
-    // ],
+    editDisplayMode: "custom",
+    positionActionsColumn: "last",
+    enableRowActions: true,
+    renderRowActionMenuItems: ({ row }) => [
+      <MenuItem
+        key={0}
+        onClick={() => {
+          //doSomething();
+          navigate(`/app/member/${row.original.id}/edit`);
+        }}
+      >
+        <ListItemIcon>
+          <Edit color="action" />
+        </ListItemIcon>
+        Edit
+      </MenuItem>,
+      // <DeleteMember key={1} data={row.original} onSuccess={closeMenu} />,
+    ],
   });
 
   return <MaterialReactTable table={table} />;
