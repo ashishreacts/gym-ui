@@ -1,7 +1,7 @@
 import { Box, Button, Modal, Stack, Typography } from "@mui/material";
 import React from "react";
-import { CreateBatch } from "./CreateBatch";
 import { BatchList } from "./BatchList";
+import { CreateBatch } from "./CreateBatch";
 
 export const BatchListPage = () => {
   const [open, setOpen] = React.useState(false);

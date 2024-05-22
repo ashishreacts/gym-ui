@@ -1,3 +1,4 @@
+import { AccountMenu } from "@/profile/components";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MailIcon from "@mui/icons-material/Mail";
@@ -127,6 +128,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           <Typography variant="h6" noWrap component="div">
             GymBook
           </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <AccountMenu />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
