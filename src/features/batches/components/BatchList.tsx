@@ -9,12 +9,12 @@ import {
   type MRT_ColumnDef,
 } from "material-react-table";
 import { useMemo, useState } from "react";
-import { usePlanList } from "../api";
-import { PlanListItem } from "../api/types";
-import { DeletePlan } from "./DeletePlan";
-import { UpdatePlan } from "./UpdatePlan";
+import { useBatchList } from "../api";
+import { BatchListItem } from "../api/types";
+import { DeleteBatch } from "./DeleteBatch";
+import { UpdateBatch } from "./UpdateBatch";
 
-export const PlanList: React.FC<unknown> = () => {
+export const BatchList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
     pageIndex: 0, // initial state = 0, means laod first page
     pageSize: 5,
@@ -27,7 +27,8 @@ export const PlanList: React.FC<unknown> = () => {
     pageSize: pagination.pageSize,
   };
 
-  const api = usePlanList({
+  const api = useBatchList({
+    // TODO: add other params
     pagination: paginationQueryOptions,
     gymId: "5a0b9b6c-358f-406a-a82e-70cf9ba5ba70",
   });
@@ -35,7 +36,7 @@ export const PlanList: React.FC<unknown> = () => {
   const dbRowCount = api.data?.data?.totalRecords ?? 0;
   const tableRows = api.data?.data?.records ?? [];
 
-  const columns = useMemo<MRT_ColumnDef<PlanListItem>[]>(
+  const columns = useMemo<MRT_ColumnDef<BatchListItem>[]>(
     () => [
       {
         accessorFn: (originalRow) => originalRow.name,
@@ -43,14 +44,19 @@ export const PlanList: React.FC<unknown> = () => {
         header: "Name",
       },
       {
-        accessorFn: (originalRow) => originalRow.price,
-        id: "price",
-        header: "Price",
+        accessorFn: (originalRow) => originalRow.startTimeId,
+        id: "startTimeId",
+        header: "Start Time",
       },
       {
-        accessorFn: (originalRow) => originalRow.durationInMoths,
-        id: "durationInMoths",
-        header: "Duration in Months",
+        accessorFn: (originalRow) => originalRow.endTimeId,
+        id: "endTimeId",
+        header: "End Time",
+      },
+      {
+        accessorFn: (originalRow) => originalRow.batchLimit,
+        id: "batchLimit",
+        header: "Batch Limit",
       },
     ],
     []
@@ -87,8 +93,8 @@ export const PlanList: React.FC<unknown> = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
-      <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
+      <UpdateBatch key={0} data={row.original} onSuccess={closeMenu} />,
+      <DeleteBatch key={1} data={row.original} onSuccess={closeMenu} />,
     ],
   });
 

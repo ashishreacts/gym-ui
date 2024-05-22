@@ -1,12 +1,16 @@
-import { Route, Routes } from "react-router-dom";
-import Plans from "./Plans";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { CreatePlan } from "../components/CreatePlan";
+import { PlanListPage } from "../components/PlanListPage";
 
-export const PlanRoute = () => {
+export const PlanRoutes = () => {
+  const navigate = useNavigate();
   return (
     <Routes>
-      <Route path="" element={<Plans />} />
-      {/* Example: You can add more routes related to plan feature here */}
-      {/* <Route path="/create" element={<CreatePlan />} /> */}
+      <Route path="" element={<PlanListPage />} />
+      <Route
+        path="create"
+        element={<CreatePlan onSuccess={() => navigate("/app/plans")} />}
+      />
     </Routes>
   );
 };

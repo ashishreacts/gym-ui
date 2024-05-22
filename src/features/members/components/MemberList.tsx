@@ -3,18 +3,21 @@ import {
   getAPIErrorText,
 } from "@/components/MaterialReactTable";
 import { PaginationQuery } from "@/types/api";
+import { Edit } from "@mui/icons-material";
+import { ListItemIcon, MenuItem } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from "material-react-table";
 import { useMemo, useState } from "react";
-import { usePlanList } from "../api";
-import { PlanListItem } from "../api/types";
-import { DeletePlan } from "./DeletePlan";
-import { UpdatePlan } from "./UpdatePlan";
+import { useNavigate } from "react-router-dom";
+import { useMemberList } from "../api";
+import { MemberListItem } from "../api/types";
+import { DeleteMember } from "./DeleteMember";
 
-export const PlanList: React.FC<unknown> = () => {
+export const MemberList: React.FC<unknown> = () => {
+  const navigate = useNavigate();
   const [pagination, setPagination] = useState({
     pageIndex: 0, // initial state = 0, means laod first page
     pageSize: 5,
@@ -27,7 +30,8 @@ export const PlanList: React.FC<unknown> = () => {
     pageSize: pagination.pageSize,
   };
 
-  const api = usePlanList({
+  const api = useMemberList({
+    // TODO: add other params
     pagination: paginationQueryOptions,
     gymId: "5a0b9b6c-358f-406a-a82e-70cf9ba5ba70",
   });
@@ -35,22 +39,27 @@ export const PlanList: React.FC<unknown> = () => {
   const dbRowCount = api.data?.data?.totalRecords ?? 0;
   const tableRows = api.data?.data?.records ?? [];
 
-  const columns = useMemo<MRT_ColumnDef<PlanListItem>[]>(
+  const columns = useMemo<MRT_ColumnDef<MemberListItem>[]>(
     () => [
       {
-        accessorFn: (originalRow) => originalRow.name,
-        id: "name",
-        header: "Name",
+        accessorFn: (originalRow) => originalRow.firstName,
+        id: "firstName",
+        header: "First Name",
       },
       {
-        accessorFn: (originalRow) => originalRow.price,
-        id: "price",
-        header: "Price",
+        accessorFn: (originalRow) => originalRow.lastName,
+        id: "lastName",
+        header: "Last Name",
       },
       {
-        accessorFn: (originalRow) => originalRow.durationInMoths,
-        id: "durationInMoths",
-        header: "Duration in Months",
+        accessorFn: (originalRow) => originalRow.email,
+        id: "email",
+        header: "Email",
+      },
+      {
+        accessorFn: (originalRow) => originalRow.mobile,
+        id: "mobile",
+        header: "Mobile No.",
       },
     ],
     []
@@ -87,8 +96,19 @@ export const PlanList: React.FC<unknown> = () => {
     positionActionsColumn: "last",
     enableRowActions: true,
     renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
-      <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
+      <MenuItem
+        key={0}
+        onClick={() => {
+          //doSomething();
+          navigate(`/app/member/${row.original.id}/edit`);
+        }}
+      >
+        <ListItemIcon>
+          <Edit color="action" />
+        </ListItemIcon>
+        Delete
+      </MenuItem>,
+      <DeleteMember key={1} data={row.original} onSuccess={closeMenu} />,
     ],
   });
 

@@ -9,12 +9,10 @@ import {
   type MRT_ColumnDef,
 } from "material-react-table";
 import { useMemo, useState } from "react";
-import { usePlanList } from "../api";
-import { PlanListItem } from "../api/types";
-import { DeletePlan } from "./DeletePlan";
-import { UpdatePlan } from "./UpdatePlan";
+import { GymListItem } from "../api/types";
+import { useGymList } from "../api";
 
-export const PlanList: React.FC<unknown> = () => {
+export const GymList: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
     pageIndex: 0, // initial state = 0, means laod first page
     pageSize: 5,
@@ -27,30 +25,25 @@ export const PlanList: React.FC<unknown> = () => {
     pageSize: pagination.pageSize,
   };
 
-  const api = usePlanList({
+  const api = useGymList({
+    // TODO: add other params
     pagination: paginationQueryOptions,
-    gymId: "5a0b9b6c-358f-406a-a82e-70cf9ba5ba70",
   });
 
   const dbRowCount = api.data?.data?.totalRecords ?? 0;
   const tableRows = api.data?.data?.records ?? [];
 
-  const columns = useMemo<MRT_ColumnDef<PlanListItem>[]>(
+  const columns = useMemo<MRT_ColumnDef<GymListItem>[]>(
     () => [
+      {
+        accessorFn: (originalRow) => originalRow.id,
+        id: "id",
+        header: "Id",
+      },
       {
         accessorFn: (originalRow) => originalRow.name,
         id: "name",
         header: "Name",
-      },
-      {
-        accessorFn: (originalRow) => originalRow.price,
-        id: "price",
-        header: "Price",
-      },
-      {
-        accessorFn: (originalRow) => originalRow.durationInMoths,
-        id: "durationInMoths",
-        header: "Duration in Months",
       },
     ],
     []
@@ -83,13 +76,13 @@ export const PlanList: React.FC<unknown> = () => {
     },
 
     // crud options
-    editDisplayMode: "custom",
-    positionActionsColumn: "last",
-    enableRowActions: true,
-    renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
-      <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
-    ],
+    // editDisplayMode: "custom",
+    // positionActionsColumn: "last",
+    // enableRowActions: true,
+    // renderRowActionMenuItems: ({ closeMenu, row }) => [
+    //   <UpdateGym key={0} data={row.original} onSuccess={closeMenu} />,
+    //   <DeleteGym key={1} data={row.original} onSuccess={closeMenu} />,
+    // ],
   });
 
   return <MaterialReactTable table={table} />;
