@@ -31,7 +31,11 @@ export const WizardStepTwoForm = forwardRef(
     return (
       <Box>
         {/* TODO: Define the form of this wizard-step/section */}
-        <PlanIdDropdown register={register} errors={errors} />
+        <PlanIdDropdown
+          register={register}
+          errors={errors}
+          gymId={"5a0b9b6c-358f-406a-a82e-70cf9ba5ba70"}
+        />
 
         <BatchIdDropdown
           register={register}
