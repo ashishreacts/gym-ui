@@ -17,13 +17,14 @@ export const BatchIdDropdown: React.FC<{
 }> = ({ register, errors }) => {
   // TODO: set default value
   // valid defaultValue is - a key from mappings object defined as above
+
   const defaultValue =
     mappings[Object.keys(mappings)[0] as keyof typeof mappings];
 
   const Component = () => {
     return (
       <SelectField
-        label="LABEL"
+        label="Batch Name"
         registration={register("stepTwo.batchId")}
         formError={errors.stepTwo?.batchId}
         defaultValue={defaultValue}

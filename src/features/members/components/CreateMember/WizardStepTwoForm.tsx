@@ -3,10 +3,10 @@ import { Box, Button, TextField } from "@mui/material";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { BatchIdDropdown } from "./BatchIdDropdown";
-import { PlanIdDropdown } from "./PlanIdDropdown";
-import { FormValues } from "./schema";
-import { TrainingTypeDropdown } from "./TrainingTypeDropdown";
 import { DiscountTypeDropdown } from "./DiscountTypeDropdown";
+import { PlanIdDropdown } from "./PlanIdDropdown";
+import { TrainingTypeDropdown } from "./TrainingTypeDropdown";
+import { FormValues } from "./schema";
 
 export const WizardStepTwoForm = forwardRef(
   ({ onSuccessValidation, onBack }: WizardStepProps, _ref) => {
@@ -33,7 +33,11 @@ export const WizardStepTwoForm = forwardRef(
         {/* TODO: Define the form of this wizard-step/section */}
         <PlanIdDropdown register={register} errors={errors} />
 
-        <BatchIdDropdown register={register} errors={errors} />
+        <BatchIdDropdown
+          register={register}
+          errors={errors}
+          gymId={"5a0b9b6c-358f-406a-a82e-70cf9ba5ba70"}
+        />
 
         <AppDatePicker
           control={_hookFormControl}
