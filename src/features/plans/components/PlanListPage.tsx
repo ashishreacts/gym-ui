@@ -1,7 +1,7 @@
 import { Box, Button, Modal, Stack, Typography } from "@mui/material";
 import React from "react";
-import { PlanList } from "./PlanList";
 import { CreatePlan } from "./CreatePlan";
+import { PlanList } from "./PlanList";
 
 export const PlanListPage = () => {
   const [open, setOpen] = React.useState(false);
@@ -20,9 +20,20 @@ export const PlanListPage = () => {
   };
   return (
     <Stack>
-      <Button variant="contained" onClick={handleOpen}>
-        <Typography>Create Plan</Typography>
-      </Button>
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        sx={{ marginBottom: 2 }}
+      >
+        <Button
+          variant="contained"
+          sx={{ width: "13rem" }}
+          onClick={handleOpen}
+        >
+          <Typography>Create Plan</Typography>
+        </Button>
+      </Stack>
       <Modal
         open={open}
         onClose={handleClose}

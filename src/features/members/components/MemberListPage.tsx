@@ -7,14 +7,22 @@ export const MemberListPage = () => {
 
   return (
     <Stack>
-      <Button
-        variant="contained"
-        onClick={() => {
-          navigate(`/app/member/create`);
-        }}
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        sx={{ marginBottom: 2 }}
       >
-        <Typography>Create Member</Typography>
-      </Button>
+        <Button
+          variant="contained"
+          sx={{ width: "13rem" }}
+          onClick={() => {
+            navigate(`/app/member/create`);
+          }}
+        >
+          <Typography>Create Member</Typography>
+        </Button>
+      </Stack>
       <MemberList />
     </Stack>
   );

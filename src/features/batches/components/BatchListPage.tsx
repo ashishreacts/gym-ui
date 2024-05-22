@@ -21,11 +21,22 @@ export const BatchListPage = () => {
   };
   return (
     <Stack>
-      <Button variant="contained" onClick={handleOpen}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Create Batch
-        </Typography>
-      </Button>
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        sx={{ marginBottom: 2 }}
+      >
+        <Button
+          variant="contained"
+          sx={{ width: "13rem" }}
+          onClick={handleOpen}
+        >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Create Batch
+          </Typography>
+        </Button>
+      </Stack>
       <Modal
         open={open}
         onClose={handleClose}

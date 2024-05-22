@@ -20,9 +20,20 @@ export const GymListPage = () => {
   };
   return (
     <Stack>
-      <Button variant="contained" onClick={handleOpen}>
-        <Typography>Create Gym</Typography>
-      </Button>
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        sx={{ marginBottom: 2 }}
+      >
+        <Button
+          variant="contained"
+          sx={{ width: "13rem" }}
+          onClick={handleOpen}
+        >
+          <Typography>Create Gym</Typography>
+        </Button>
+      </Stack>
       <Modal
         open={open}
         onClose={handleClose}
