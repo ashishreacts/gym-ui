@@ -23,7 +23,7 @@ type ApiParams = {
 };
 
 const callApi = async (params: ApiParams): Promise<CreateBatchResponseDTO> => {
-  const apiEndpoint = `/v1/gyms/${params.gymId}/batches`; // TODO: set valid api endpoint
+  const apiEndpoint = `/v1/gyms/${params.gymId}/batches`;
   return axiosInstance.post(apiEndpoint, params.data);
 };
 
