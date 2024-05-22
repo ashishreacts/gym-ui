@@ -89,6 +89,7 @@ const LoginForm = (
           variant="outlined"
           required
           fullWidth
+          type="password"
           {...register("password")}
           error={!!errors.password}
           helperText={errors.password?.message ?? ""}
