@@ -1,36 +1,35 @@
 import { SelectField } from "@/components/Elements";
+import { useBatchList } from "@/features/batches";
+import { PaginationQuery } from "@/types/api";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormValues } from "./schema";
-
-const mappings = {
-  // TODO: add mappings
-  // mappings is nothing but object of displayValue: (string or num)-Value/Enum.Variant
-  // e.g.
-  "Morning batch": "30f6cfd8-11c3-4fb2-b238-8a69981c2e5a",
-  "My 1st project": "f0d4e8c4-d790-43fe-abec-24cf718d6a2a",
-  "Ashish Jadhav": "0bcc4ec9-302e-4794-97c7-8c1a42c3a63c",
-};
 
 export const BatchIdDropdown: React.FC<{
   register: UseFormRegister<FormValues>;
   errors: FieldErrors<FormValues>;
-}> = ({ register, errors }) => {
-  // TODO: set default value
-  // valid defaultValue is - a key from mappings object defined as above
-  const defaultValue =
-    mappings[Object.keys(mappings)[0] as keyof typeof mappings];
+  gymId: string;
+}> = ({ register, errors, gymId }) => {
+  const pagination: PaginationQuery = { page: 1, pageSize: 10 };
+  const { data, isLoading, error } = useBatchList({ pagination, gymId });
+
+  if (isLoading) return <div>Loading....</div>;
+  if (error) return <div>Error is loading</div>;
+
+  const options = data?.data.records.map((batch) => ({
+    label: batch.name,
+    value: batch.id,
+  }));
+
+  const defaultValue = options && options.length > 0 ? options[0].value : "";
 
   const Component = () => {
     return (
       <SelectField
-        label="LABEL"
+        label="Batch Name"
         registration={register("stepTwo.batchId")}
         formError={errors.stepTwo?.batchId}
         defaultValue={defaultValue}
-        options={Object.entries(mappings).map(([displayValue, value]) => ({
-          label: displayValue,
-          value: value,
-        }))}
+        options={options || []}
       />
     );
   };

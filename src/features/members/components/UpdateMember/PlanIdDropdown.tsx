@@ -23,7 +23,7 @@ export const PlanIdDropdown: React.FC<{
   const Component = () => {
     return (
       <SelectField
-        label="LABEL"
+        label="Plan Name"
         registration={register("stepTwo.planId")}
         formError={errors.stepTwo?.planId}
         defaultValue={defaultValue}

@@ -41,7 +41,7 @@ type ApiParams = {
 };
 
 const callApi = async (params: ApiParams): Promise<CreateMemberResponseDTO> => {
-  const apiEndpoint = `/v1/gyms/${params.gymId}/members`; // TODO: set valid api endpoint
+  const apiEndpoint = `/v1/gyms/${params.gymId}/members`;
   return axiosInstance.post(apiEndpoint, params.data);
 };
 
@@ -53,15 +53,12 @@ export const useCreateMember = () => {
       return callApi(params);
     },
     onMutate: async (_apiParams: ApiParams) => {
-      // TODO: use correct queryKeys here, use keys from _apiParams if required
-      // cancel ongoing queries, need awaiting before calling actual api
       await queryClient.cancelQueries({ queryKey: [queryKeyMemberList] });
     },
     onSuccess: (
       _responseData: CreateMemberResponseDTO,
       _apiParams: ApiParams
     ) => {
-      // TODO: use correct queryKeys here, use values from _apiParams/_responseData if required
       queryClient.invalidateQueries({ queryKey: [queryKeyMemberList] });
 
       addNotification({

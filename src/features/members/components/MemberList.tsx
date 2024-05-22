@@ -106,7 +106,7 @@ export const MemberList: React.FC<unknown> = () => {
         <ListItemIcon>
           <Edit color="action" />
         </ListItemIcon>
-        Delete
+        Edit
       </MenuItem>,
       <DeleteMember key={1} data={row.original} onSuccess={closeMenu} />,
     ],

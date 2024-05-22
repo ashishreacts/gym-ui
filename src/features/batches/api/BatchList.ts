@@ -11,7 +11,7 @@ type ApiParams = {
 };
 
 const callApi = async (params: ApiParams): Promise<BatchListResponseDTO> => {
-  const apiEndpoint = `/v1/gyms/${params.gymId}/batches?pageIndex=${params.pagination.page}&pageSize=${params.pagination.pageSize}`; // TODO: set valid api endpoint"
+  const apiEndpoint = `/v1/gyms/${params.gymId}/batches?pageIndex=${params.pagination.page}&pageSize=${params.pagination.pageSize}`;
   return axiosInstance.get(apiEndpoint);
 };
 
