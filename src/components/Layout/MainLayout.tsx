@@ -18,6 +18,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { CSSObject, Theme, styled, useTheme } from "@mui/material/styles";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -140,9 +141,16 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Members", "Plans", "Batches", "Gyms"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {[
+            { label: "Members", path: "member" },
+            { label: "Plans", path: "plans" },
+            { label: "Batches", path: "batches" },
+            { label: "Gyms", path: "gym" },
+          ].map((item, index) => (
+            <ListItem key={item.label} disablePadding sx={{ display: "block" }}>
               <ListItemButton
+                component={Link}
+                to={item.path}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -158,7 +166,10 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={item.label}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
